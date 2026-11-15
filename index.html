@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Steven Ng — Event Production & AV Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <style>
+      button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2rem; }
+      :root{
+        --bg:#f6f6f4; --bg2:#ffffff; --ink:#17171c; --ink2:#4c4c55; --line:#e2e1dc;
+        --accent:#9a6206; --accent-ink:#7c4f04; --chip:#ececea; --chip-ink:#33333a;
+        --hero-ink:#f5f2ea; --card:#ffffff; --shadow:0 10px 30px rgba(20,20,25,.10);
+      }
+      @media (prefers-color-scheme: dark){
+        :root{
+          --bg:#0f0f13; --bg2:#16161c; --ink:#f2f0ea; --ink2:#b9b7ae; --line:#2a2a33;
+          --accent:#f0b64a; --accent-ink:#f0b64a; --chip:#22222a; --chip-ink:#e8e6df;
+          --card:#17171e; --shadow:0 10px 30px rgba(0,0,0,.45);
+        }
+      }
+      *{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important; animation:none !important} }
+      body{margin:0;background:var(--bg);color:var(--ink);font-family:"Archivo","Noto Sans TC",system-ui,sans-serif;line-height:1.65;-webkit-font-smoothing:antialiased}
+      img{display:block;max-width:100%}
+      a{color:var(--accent-ink)}
+      .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+      .mono{font-family:"IBM Plex Mono",monospace}
+
+      /* ---------- Hero ---------- */
+      .hero{position:relative;background:#0c0c10;color:var(--hero-ink);overflow:hidden}
+      .hero-media{position:absolute;inset:0}
+      .hero-media img{width:100%;height:100%;object-fit:cover;object-position:center 42%;opacity:.55}
+      .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,14,.42) 0%,rgba(10,10,14,.18) 42%,rgba(10,10,14,.88) 100%)}
+      .hero-inner{position:relative;z-index:1;padding:64px 0 52px}
+      .hero-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+      .hero-top .mono{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#e9c883}
+      .hero-avail{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(245,242,234,.35);border-radius:999px;padding:7px 14px;font-size:.82rem;font-weight:500;background:rgba(12,12,16,.35)}
+      .hero-avail i{width:8px;height:8px;border-radius:50%;background:#58d68a;display:inline-block}
+      h1{font-family:"Archivo","Noto Sans TC",sans-serif;font-weight:900;font-size:clamp(2.3rem,6.2vw,4.4rem);line-height:1.06;margin:38px 0 6px;letter-spacing:.01em}
+      h1 .zh{display:block;font-size:.52em;font-weight:900;letter-spacing:.28em;margin-bottom:14px;color:#f0b64a}
+      .hero-name-row{display:flex;align-items:center;gap:30px;margin:38px 0 0}
+      .hero-name-row h1{margin:0 0 6px}
+      .hero-name-text{flex:1 1 auto;min-width:0}
+      .hero-portrait{flex:0 0 212px;width:212px;margin:0}
+      .hero-portrait img{width:100%;aspect-ratio:1/1.08;object-fit:cover;object-position:50% 22%;border-radius:18px;border:2px solid rgba(240,182,74,.95);box-shadow:0 16px 36px rgba(0,0,0,.38)}
+      .hero-role{font-size:clamp(1.02rem,2.4vw,1.3rem);font-weight:700;margin:0 0 14px}
+      .hero-lede{max-width:640px;color:rgba(245,242,234,.86);font-size:1rem;margin:0 0 28px}
+      .hero-stats{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid rgba(245,242,234,.25);padding-top:22px}
+      .hstat{padding:0 26px 6px 0;margin-right:26px;border-right:1px solid rgba(245,242,234,.18)}
+      .hstat:last-child{border-right:0;margin-right:0;padding-right:0}
+      .hstat b{display:block;font-family:"Archivo",sans-serif;font-size:1.7rem;line-height:1.1}
+      .hstat span{font-size:.8rem;color:rgba(245,242,234,.75)}
+      .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+      .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 22px;border-radius:10px;font-weight:700;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer}
+      .btn-solid{background:#f0b64a;color:#191207}
+      .btn-ghost{background:rgba(12,12,16,.3);color:var(--hero-ink);border-color:rgba(245,242,234,.4)}
+
+      /* ---------- Sections ---------- */
+      section{padding:56px 0 8px}
+      .sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+      .sec-head .mono{color:var(--accent-ink);font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600}
+      h2{font-family:"Archivo","Noto Sans TC",sans-serif;font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:900;margin:0;line-height:1.25}
+      .sec-sub{color:var(--ink2);max-width:720px;margin:6px 0 24px}
+
+      /* Featured case */
+      .case{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+      .case-main{display:grid;grid-template-columns:1.25fr 1fr}
+      .case-main figure{margin:0;min-height:280px}
+      .case-main figure img{width:100%;height:100%;object-fit:cover}
+      .case-body{padding:28px 28px 24px}
+      .case-body h3{margin:0 0 4px;font-size:1.35rem;font-weight:900;line-height:1.35}
+      .case-body .en{color:var(--ink2);font-size:.9rem;margin:0 0 14px}
+      .case-body p{margin:0 0 14px;font-size:.96rem;color:var(--ink2)}
+      .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+      .tag{background:var(--chip);color:var(--chip-ink);border-radius:999px;padding:6px 13px;font-size:.8rem;font-weight:500}
+      .case-videos{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--line)}
+      .vid{padding:20px}
+      .vid + .vid{border-left:1px solid var(--line)}
+      .vid video{width:100%;border-radius:12px;background:#000;aspect-ratio:16/9;object-fit:cover}
+      .vid video.portrait{width:auto;max-width:100%;height:min(480px,72vh);aspect-ratio:auto;object-fit:contain;margin:0 auto;display:block}
+      .more-videos{border-top:0}
+      .vid h4{margin:12px 0 2px;font-size:1rem}
+      .vid p{margin:0;color:var(--ink2);font-size:.88rem}
+      .vid .mono{font-size:.75rem;color:var(--accent-ink)}
+
+      /* Filters + gallery */
+      .filters{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 22px;position:sticky;top:0;background:var(--bg);padding:14px 0 12px;z-index:5}
+      .fbtn{min-height:44px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--ink);font-family:inherit;font-size:.92rem;font-weight:700;cursor:pointer}
+      .fbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+      .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:12px}
+      .card{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;text-align:left;padding:0;font-family:inherit;color:inherit;width:100%}
+      .card .thumb{aspect-ratio:4/3;overflow:hidden;background:#1a1a20}
+      .card .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+      .card:hover .thumb img,.card:focus-visible .thumb img{transform:scale(1.045)}
+      .card figcaption{padding:14px 16px 16px}
+      .card .cat{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+      .card h3{margin:4px 0 3px;font-size:1.02rem;font-weight:900;line-height:1.4}
+      .card p{margin:0;font-size:.86rem;color:var(--ink2);line-height:1.55}
+      .card[hidden]{display:none}
+
+      /* Skills */
+      .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;padding-bottom:12px}
+      .skill{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+      .skill h3{margin:0 0 4px;font-size:1.12rem;font-weight:900}
+      .skill .en{color:var(--accent-ink);font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px;font-weight:600}
+      .skill p{margin:0;color:var(--ink2);font-size:.94rem}
+      .skill ul{margin:12px 0 0;padding-left:1.15em;color:var(--ink2);font-size:.92rem}
+      .skill li{margin:3px 0}
+      .equip{margin-top:18px;background:var(--bg2);border:1px dashed var(--line);border-radius:14px;padding:20px 24px}
+      .equip h3{margin:0 0 10px;font-size:1rem;font-weight:900}
+      .equip .tags{margin-top:0}
+      .cert{margin-top:18px;display:flex;gap:16px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px}
+      .cert .score{font-family:"Archivo",sans-serif;font-weight:900;font-size:2rem;line-height:1;color:var(--accent-ink);white-space:nowrap}
+      .cert h3{margin:0 0 4px;font-size:1.05rem}
+      .cert p{margin:0;color:var(--ink2);font-size:.92rem}
+
+      footer{margin-top:64px;border-top:1px solid var(--line);padding:30px 0 44px;color:var(--ink2);font-size:.9rem}
+      footer .fname{font-family:"Archivo","Noto Sans TC",sans-serif;font-weight:900;color:var(--ink);font-size:1.05rem}
+
+      /* Lightbox */
+      .lb{position:fixed;inset:0;background:rgba(8,8,11,.94);z-index:50;display:none;flex-direction:column}
+      .lb.open{display:flex}
+      .lb-bar{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;color:#f5f2ea;gap:12px}
+      .lb-bar .mono{font-size:.82rem}
+      .lb-stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:0 12px}
+      .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+      .lb-cap{color:#f5f2ea;padding:14px 20px 20px;text-align:center}
+      .lb-cap h3{margin:0 0 2px;font-size:1.05rem}
+      .lb-cap p{margin:0;color:rgba(245,242,234,.72);font-size:.88rem}
+      .lbtn{min-width:48px;min-height:48px;border-radius:50%;border:1px solid rgba(245,242,234,.35);background:rgba(20,20,26,.6);color:#f5f2ea;font-size:1.25rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+      .lb-nav{position:absolute;top:50%;transform:translateY(-50%)}
+      .lb-prev{left:12px}.lb-next{right:12px}
+
+      @media (max-width:900px){
+        .grid{grid-template-columns:repeat(2,1fr)}
+        .case-main{grid-template-columns:1fr}
+        .case-main figure{min-height:220px;max-height:320px}
+      }
+      @media (max-width:620px){
+        .grid{grid-template-columns:1fr}
+        .skills{grid-template-columns:1fr}
+        .case-videos{grid-template-columns:1fr}
+        .vid + .vid{border-left:0;border-top:1px solid var(--line)}
+        .hero-name-row{gap:16px;margin-top:28px}
+        .hero-portrait{flex-basis:118px;width:118px}
+        .hero-portrait img{border-radius:14px}
+        .hero-inner{padding:44px 0 40px}
+        .hstat{padding-right:16px;margin-right:16px}
+        .cert{flex-direction:column;gap:8px}
+        section{padding-top:44px}
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-media"><img src="assets/img-39.jpg" alt="FOH control position at the A Soirée of Giving charity gala: multiple displays, lighting console and run sheet" /></div>
+      <div class="wrap hero-inner">
+        <div class="hero-top">
+          <span class="mono">Event Production · AV · Live Show Control</span>
+          <span class="hero-avail"><i></i>Open to Event Production / AV roles</span>
+        </div>
+        <div class="hero-name-row">
+          <div class="hero-name-text">
+            <h1><span class="zh">EVENT PRODUCTION &amp; AV</span>STEVEN NG</h1>
+            <p class="hero-role">Event Production & AV Portfolio</p>
+          </div>
+          <figure class="hero-portrait"><img src="assets/profile-photo.jpg" alt="Portrait of Steven Ng wearing a headset at a live event control position" /></figure>
+        </div>
+        <p class="hero-lede">Based at a private club venue in Hong Kong, I run live production for ballroom galas, banquets, weddings and member events: video switching, OBS live streaming and hybrid meetings, live audio mixing, lighting and venue system integration — plus outdoor events, yacht parties and restaurant entertainment systems. Working with limited resources, I handle setup, rehearsal and show execution end to end. Every photo and video on this page is a record of my own work.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#case">Featured project ↓</a>
+          <a class="btn btn-ghost" href="#gallery">Browse all work</a>
+        </div>
+        <div class="hero-stats" aria-label="Portfolio overview">
+          <div class="hstat"><b>46</b><span>works · 42 photos + 4 videos</span></div>
+          <div class="hstat"><b>6</b><span>event types · Galas / Weddings / Live streams / Outdoor events / Yachts / Restaurants</span></div>
+          <div class="hstat"><b>Solo</b><span>One operator — setup through show execution</span></div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= FEATURED CASE ================= -->
+    <section id="case">
+      <div class="wrap">
+        <div class="sec-head"><span class="mono">Featured Project</span><h2>Featured Project: Charity Gala Live Production</h2></div>
+        <p class="sec-sub">The 'A Soirée of Giving — Weaving Hong Kong Together' charity gala was held in the Vista Ballroom at The American Club. The photo shows my front-of-house (FOH) position that night; the videos show the ballroom lighting and screens in action.</p>
+        <article class="case">
+          <div class="case-main">
+            <figure><img src="assets/img-39.jpg" alt="Wide view of the charity gala FOH position: three displays showing the event key visual, lighting console on the left, tablet with video control interface on the right, run sheet on the desk" /></figure>
+            <div class="case-body">
+              <h3>One desk runs the whole show: video, lighting and audio in sync</h3>
+              <p class="en">FOH position — video switching, lighting &amp; show calling in one desk</p>
+              <p>The position handled three video outputs (main screen, side screens and preview), playback of the event key visuals, the lighting console and tablet-controlled audio levels, following the full run sheet cue by cue through the programme.</p>
+              <p>Ballroom lighting was programmed before the dinner: purple themed wall washes, stage accents and screen content working together, so the atmosphere was set the moment guests took their seats.</p>
+              <div class="tags">
+                <span class="tag">Video switching / playback</span><span class="tag">Lighting console</span><span class="tag">Multi-screen output</span><span class="tag">Run-sheet execution</span><span class="tag">Tablet remote mixing</span>
+              </div>
+            </div>
+          </div>
+          <div class="case-videos">
+            <div class="vid">
+              <video controls preload="none" poster="assets/asset-03.jpg" src="assets/video-03.mp4" aria-label="Video: walkthrough of the ballroom purple lighting wash"></video>
+              <h4>Video 1 — Ballroom lighting walkthrough <span class="mono">0:15</span></h4>
+              <p>Purple lighting patterns across the ballroom ceiling and walls before the dinner began.</p>
+            </div>
+            <div class="vid">
+              <video controls preload="none" poster="assets/asset-05.jpg" src="assets/video-04.mp4" aria-label="Video: ballroom wide shot with main screen, side screens and colour-changing lighting in sync"></video>
+              <h4>Video 2 — Full-room view: screens and lighting in sync <span class="mono">0:16</span></h4>
+              <p>Shot from the back of the ballroom: main and side screens showing the gala visuals in sync, lighting changing colour with each segment.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section id="gallery">
+      <div class="wrap">
+        <div class="sec-head"><span class="mono">Gallery</span><h2>Work in Photos</h2></div>
+        <p class="sec-sub">Filter by category, or tap any photo to enlarge it. Each photo carries a short note on the work involved, so you can quickly see what each role actually covered.</p>
+
+        <div class="filters" role="group" aria-label="Filter photos by category">
+          <button class="fbtn" type="button" data-filter="all" aria-pressed="true">All (42)</button>
+          <button class="fbtn" type="button" data-filter="gala" aria-pressed="false">Galas & Banquets</button>
+          <button class="fbtn" type="button" data-filter="video" aria-pressed="false">Video Switching & Playback</button>
+          <button class="fbtn" type="button" data-filter="audio" aria-pressed="false">Audio Systems</button>
+          <button class="fbtn" type="button" data-filter="venue" aria-pressed="false">Venue Systems</button>
+          <button class="fbtn" type="button" data-filter="fun" aria-pressed="false">Entertainment · Yachts & Restaurants</button>
+        </div>
+
+        <div class="grid" id="grid">
+          <button class="card" type="button" data-cat="gala" data-full="assets/img-39.jpg" data-title="Charity Gala FOH Position" data-desc="The A Soirée of Giving charity gala: three-screen output, lighting console, tablet video control and run sheet — one operator running every cue.">
+            <span class="thumb"><img src="assets/img-39.jpg" alt="Charity gala FOH position: multiple displays, lighting console and run sheet" /></span>
+            <figcaption><span class="cat">Galas & Banquets</span><h3>Charity Gala FOH Position</h3><p>Three-screen output, lighting console and run sheet — one operator for the whole show.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-30.jpg" data-title="Wedding Slideshow Playback Control" data-desc="Wedding banquet control position: switcher preview/programme feeds, the couple's photos synced to the side screens, tablet control of ballroom zone levels, and a laptop running the background music playlist.">
+            <span class="thumb"><img src="assets/img-30.jpg" alt="Wedding control position: displays showing the couple's photos, tablet with zone volume control" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Wedding Slideshow Playback Control</h3><p>Preview/programme switching with tablet control of zone volume and music.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-37.jpg" data-title="Live Feed Switching Test" data-desc="Pre-show test of the live feed in the switching software: multi-camera previews, programme output and audio meters monitored together, with a tablet on the right for zone mix control.">
+            <span class="thumb"><img src="assets/img-37.jpg" alt="Control desk displays showing live switching software and multi-camera previews" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Live Feed Switching Test</h3><p>Multi-camera previews, programme monitoring and meter checks in sync.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-36.jpg" data-title="Output Pattern & Picture Check" data-desc="Pre-show check of the output pattern: switcher preview, programme feed and monitor all matching, confirming the key visual's aspect ratio and colours before doors opened.">
+            <span class="thumb"><img src="assets/img-36.jpg" alt="Control desk displays showing the same pink output pattern for picture checking" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Output Pattern & Picture Check</h3><p>Preview, programme and monitor matched — the final check before showtime.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="audio" data-full="assets/img-42.jpg" data-title="Digital Mixer & Wireless Mic Reception" data-desc="Allen & Heath SQ digital mixer with Shure directional antennas: wireless mic frequencies and reception checked before the dinner, the mixer racked in a mobile case for fast deployment across venues.">
+            <span class="thumb"><img src="assets/img-42.jpg" alt="Allen & Heath SQ digital mixer and two Shure directional antennas" /></span>
+            <figcaption><span class="cat">Audio Systems</span><h3>Digital Mixer & Wireless Mic Reception</h3><p>SQ mixer plus Shure directional antennas, RF checked before the event.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-28.jpg" data-title="Ballroom AV Rack (Open)" data-desc="Inside the ballroom twin racks: amplifiers, wireless receivers, matrix switching, network switches and lighting controllers in layered bays, cabling clearly labelled for fast fault-finding.">
+            <span class="thumb"><img src="assets/img-28.jpg" alt="Open twin AV racks with amplifiers, receivers, switchers and network gear" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Ballroom AV Rack (Open)</h3><p>Amplification, receivers, matrix and network in layered bays — labelled and easy to maintain.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-27.jpg" data-title="Ballroom AV Rack Room" data-desc="The racks live inside a timber-doored cabinet in the ballroom: doors closed day to day to keep the room tidy, opened for events to reveal the complete audio and video core.">
+            <span class="thumb"><img src="assets/img-27.jpg" alt="Two black AV racks housed in a timber cabinet" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Ballroom AV Rack Room</h3><p>The system core hidden in the venue cabinet — tidy and ready to run.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-29.jpg" data-title="Venue Zone Control Panel (Close-up)" data-desc="The wall touch panel Zone Control screen: per-zone background music, Bluetooth panel and microphone levels under independent control, with the HDMI / USB-C input plate positions marked below.">
+            <span class="thumb"><img src="assets/img-29.jpg" alt="Wall touch panel showing the Zone Control volume interface" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Venue Zone Control Panel (Close-up)</h3><p>Zone control of BGM, Bluetooth and mic levels from a single screen.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-25.jpg" data-title="Venue Control Panel & Input Points" data-desc="The full layout of the same control point: touch panel above, signal input panel below, banquet tables right beside it — easy for event staff to connect and adjust on the spot.">
+            <span class="thumb"><img src="assets/img-25.jpg" alt="Touch control panel and input panel on a timber wall beside the banquet setup" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Venue Control Panel & Input Points</h3><p>Control and connections in one place, adjustable on the spot.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="gala" data-full="assets/img-40.jpg" data-title="Ballroom Partitioning & Sound Setup" data-desc="The ballroom divided with folding screens for different programme segments, a QSC loudspeaker on a mobile stand covering the rear seats, and ceiling lighting preset to a purple ambience matching the gala theme.">
+            <span class="thumb"><img src="assets/img-40.jpg" alt="Ballroom divided by screens, mobile loudspeaker in place, purple ceiling lighting" /></span>
+            <figcaption><span class="cat">Galas & Banquets</span><h3>Ballroom Partitioning & Sound Setup</h3><p>Screen zoning, fill sound and themed lighting presets.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="gala" data-full="assets/img-26.jpg" data-title="Ballroom Entrance Mic Point" data-desc="A small-table mic and tablet control point by the ballroom entrance: ready for welcome remarks or speeches at a moment's notice, positioned just in front of the AV rack room doors for quick support.">
+            <span class="thumb"><img src="assets/img-26.jpg" alt="Microphone and control tablet on a round table at the ballroom entrance" /></span>
+            <figcaption><span class="cat">Galas & Banquets</span><h3>Ballroom Entrance Mic Point</h3><p>Instant mic for welcomes and speeches, support point next to the rack room.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="audio" data-full="assets/img-41.jpg" data-title="Backstage Equipment Staging" data-desc="Backstage at an event: the Allen & Heath SQ-5 mixer case, cable cases and control cart staged and ready, mic stands and signal cables stored separately for fast moves and resets between segments.">
+            <span class="thumb"><img src="assets/img-41.jpg" alt="Allen & Heath SQ-5 case, equipment cases and control cart backstage" /></span>
+            <figcaption><span class="cat">Audio Systems</span><h3>Backstage Equipment Staging</h3><p>Case-based organisation for faster changeovers and resets.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-38.jpg" data-title="Mobile Control Cart (Packed Down)" data-desc="The rear of my self-built mobile control cart: display mounts, Allen & Heath cases and cabling consolidated on one cart, covered with a black cloth after the show and rolled to the next venue for a quick reset.">
+            <span class="thumb"><img src="assets/img-38.jpg" alt="Rear of the mobile control cart covered with a black cloth, equipment cases beside it" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Mobile Control Cart (Packed Down)</h3><p>The whole control system on one cart — fast resets across venues.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="gala" data-full="assets/img-31.jpg" data-title="Lounge Live Music Setup" data-desc="A small live-music setup in the club lounge: two mic stands, left/right loudspeakers and a compact mixing position fitted around the bookshelves and sofas — full live sound without disturbing the décor.">
+            <span class="thumb"><img src="assets/img-31.jpg" alt="Lounge performance area: mic stands, loudspeakers, leather sofas and bookshelves" /></span>
+            <figcaption><span class="cat">Galas & Banquets</span><h3>Lounge Live Music Setup</h3><p>Compact live sound blended into the venue décor — discreet but complete.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="fun" data-full="assets/img-32.jpg" data-title="Restaurant Karaoke Big-Screen System" data-desc="A restaurant event: karaoke on the big projection screen, song-request unit and tablet in place, loudspeakers either side covering every table so guests can join in from their seats.">
+            <span class="thumb"><img src="assets/img-32.jpg" alt="Large restaurant projection screen showing karaoke, song-request unit and loudspeaker beside it" /></span>
+            <figcaption><span class="cat">Entertainment</span><h3>Restaurant Karaoke Big-Screen System</h3><p>Big screen, song unit and full-room speakers in a single deployment.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="fun" data-full="assets/img-33.jpg" data-title="Karaoke Song Selection & Remote (Close-up)" data-desc="Song-selection screen and tablet remote used together: the main screen searches by artist and language while the tablet mirrors the playlist and volume controls, the host unit placed by the restaurant service counter for easy operation.">
+            <span class="thumb"><img src="assets/img-33.jpg" alt="Karaoke selection screen and tablet remote side by side showing song lists" /></span>
+            <figcaption><span class="cat">Entertainment</span><h3>Karaoke Song Selection & Remote (Close-up)</h3><p>Main-screen selection plus tablet remote — dual-screen control.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="fun" data-full="assets/img-34.jpg" data-title="Yacht Karaoke Tablet Control" data-desc="A yacht party: song requests controlled from a tablet in the limited deck space, lyrics on the TV screen and two wireless mics staged on the cooler — the system runs just as reliably at sea.">
+            <span class="thumb"><img src="assets/img-34.jpg" alt="Hand-held tablet controlling karaoke on a yacht, TV showing lyrics, wireless mics nearby" /></span>
+            <figcaption><span class="cat">Entertainment</span><h3>Yacht Karaoke Tablet Control</h3><p>Tight space, marine environment — the whole system run from a tablet.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="fun" data-full="assets/img-35.jpg" data-title="Yacht Night Party — Wide View" data-desc="The yacht deck against the Victoria Harbour skyline: MIPRO portable loudspeaker, karaoke screen and gold decorations, with the Admiralty carnival lights behind — party atmosphere and a stable system at once.">
+            <span class="thumb"><img src="assets/img-35.jpg" alt="Karaoke screen and portable loudspeaker on a yacht deck at night, harbour skyline behind" /></span>
+            <figcaption><span class="cat">Entertainment</span><h3>Yacht Night Party — Wide View</h3><p>Portable speaker and karaoke, running reliably under the harbour lights.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-03.jpg" data-title="Ballroom Hybrid Live Stream Position" data-desc="Live streaming a banquet event: laptop running OBS preview/programme, tablet switching control, camera feeds and the lighting console side by side, with a PTZ camera on the right covering the stage — in-room and online audiences in sync.">
+            <span class="thumb"><img src="assets/img-03.jpg" alt="Ballroom streaming position: laptops, tablet switching interface and PTZ camera" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Ballroom Hybrid Live Stream Position</h3><p>OBS, tablet switching and PTZ camera — room and stream in sync.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-06.jpg" data-title="Stream Desk: Multi-Screen Monitoring" data-desc="Front view of the same position: OBS programme, a Zoom monitoring screen, tablet multi-view switching and a compact audio interface, each with a clear role — output and connection status visible at all times during the show.">
+            <span class="thumb"><img src="assets/img-06.jpg" alt="Front of the streaming desk: OBS output, monitoring screen and tablet multi-view" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Stream Desk: Multi-Screen Monitoring</h3><p>Output, connection and switching status all on one desk.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-07.jpg" data-title="OBS Streaming + Video Conferencing, One System" data-desc="OBS showing two-camera preview and programme, the left screen carrying the video-conference participants, lighting console and audio interface below — one system covering both the room broadcast and remote connections.">
+            <span class="thumb"><img src="assets/img-07.jpg" alt="Laptop with OBS two-camera view beside a video-conference monitoring screen" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>OBS Streaming + Video Conferencing, One System</h3><p>Two-camera output and remote links handled at one position.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-04.jpg" data-title="Switcher & Audio Interface (Close-up)" data-desc="Close-up of the hardware switcher, recording/mixing interface and tablet multi-view: sources previewed live on the tablet, fast cuts on hardware buttons, audio levels monitored throughout.">
+            <span class="thumb"><img src="assets/img-04.jpg" alt="Close-up of hardware switcher, mixer interface knobs and tablet multi-view control" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Switcher & Audio Interface (Close-up)</h3><p>Tablet preview plus hardware switching, audio monitored in sync.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-08.jpg" data-title="Tablet Switching & Stage Stream Monitoring" data-desc="The tablet shows the switcher multi-source preview while the laptop carries the stage group-photo feed and video-conference participants — stage segments and online interaction lined up in real time.">
+            <span class="thumb"><img src="assets/img-08.jpg" alt="Tablet multi-view switching interface and laptop showing the stage live feed" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Tablet Switching & Stage Stream Monitoring</h3><p>Multi-source previews matched to the stage picture in real time.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-05.jpg" data-title="Hybrid Event Video-Conferencing Support" data-desc="A tech support desk beside the ballroom stage: several laptops monitoring the video-conference participants at once, crew coordinating by radio so remote guests connect seamlessly with the live programme.">
+            <span class="thumb"><img src="assets/img-05.jpg" alt="Support desk beside the stage with laptops showing video-conference participants" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Hybrid Event Video-Conferencing Support</h3><p>Multi-screen monitoring of remote guests, seamlessly tied into the live show.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-17.jpg" data-title="OBS Two-Camera Interface (Close-up)" data-desc="Close-up of the OBS interface: preview on the left, programme on the right across two camera feeds, scene list, audio meters and stream status all visible below — with a recording backup running throughout the live show.">
+            <span class="thumb"><img src="assets/img-17.jpg" alt="Close-up of the OBS two-camera preview and programme interface on a laptop screen" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>OBS Two-Camera Interface (Close-up)</h3><p>Preview, programme, audio and stream status on one screen.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-18.jpg" data-title="YouTube Live Broadcast Page" data-desc="The YouTube Live page for a themed party: two camera feeds, event branding, a live clock and a photo-submission QR code broadcast together, so members who couldn't attend could still join in online.">
+            <span class="thumb"><img src="assets/img-18.jpg" alt="Screen showing a YouTube Live page with two-camera party footage and a QR code" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>YouTube Live Broadcast Page</h3><p>Two cameras, graphics layers and QR code — online guests joining in sync.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-16.jpg" data-title="Lobby Streaming Position" data-desc="A streaming position built temporarily in the building lobby: two laptops splitting OBS switching and platform monitoring, a tablet as backup control — the full streaming rig fitted into a limited space.">
+            <span class="thumb"><img src="assets/img-16.jpg" alt="Streaming desk by a lobby pillar: two laptops and a tablet" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Lobby Streaming Position</h3><p>Temporary setup, clear split between streaming and monitoring.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-21.jpg" data-title="Lobby Stream Multi-Camera Monitoring" data-desc="Front of the lobby position: OBS laptop, stream-monitoring computer and tablet working as three screens, a compact audio interface on the left — picture, sound and platform status cross-checked in real time.">
+            <span class="thumb"><img src="assets/img-21.jpg" alt="Front of the lobby streaming desk: three devices showing different stream views" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Lobby Stream Multi-Camera Monitoring</h3><p>Three screens cross-checked for an error-free broadcast.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-19.jpg" data-title="Lobby Streaming Position (Side View)" data-desc="Side view of the position: equipment neatly covered in black cloth to blend into the lobby, live instruments beside it — streaming and live-performance support handled from the same spot.">
+            <span class="thumb"><img src="assets/img-19.jpg" alt="Side of the lobby streaming desk, equipment under black cloth, cajón beside it" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Lobby Streaming Position (Side View)</h3><p>Equipment discreetly blended in — support without disturbing guests.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-20.jpg" data-title="Live Operation at the Streaming Desk" data-desc="On duty at the glass-walled lobby position on event day: laptop, wireless receiver antennas and tablet all on one desk, every feed still clearly monitored in the evening daylight.">
+            <span class="thumb"><img src="assets/img-20.jpg" alt="Technician operating a laptop at the streaming position in a glass-walled lobby" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Live Operation at the Streaming Desk</h3><p>One operator on duty — streaming, reception and monitoring together.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-22.jpg" data-title="Wireless Camera Transmission Rig (Close-up)" data-desc="A camera fitted with a multi-antenna wireless video transmitter, mounted high in the venue: the feed returns to the control desk wirelessly, freeing the camera position from cabling, even while moving.">
+            <span class="thumb"><img src="assets/img-22.jpg" alt="Close-up of a camera with a multi-antenna wireless video transmitter" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Wireless Camera Transmission Rig (Close-up)</h3><p>Wireless feed back to the desk — freer camera movement.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-02.jpg" data-title="Outdoor Streaming Camera & Wireless Link" data-desc="Camera position for an outdoor lawn event: camcorder and wireless transmitter on one tripod, themed event flags behind — a stable feed returned in full daylight conditions.">
+            <span class="thumb"><img src="assets/img-02.jpg" alt="Camcorder and wireless transmitter on a tripod, stars-and-stripes flags and lawn behind" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Outdoor Streaming Camera & Wireless Link</h3><p>Outdoor position feeding back wirelessly — no long cable runs, safer.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-09.jpg" data-title="Outdoor Talent Show Streaming Position (Day)" data-desc="Daytime control position for the outdoor Got Talent show: OBS laptop, projector, tablet switching and a monitoring screen all in place, the lawn audience right in front of the desk — pictures checked against the live reaction instantly.">
+            <span class="thumb"><img src="assets/img-09.jpg" alt="Outdoor lawn streaming desk: laptop, projector and tablet switching, audience behind" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Outdoor Talent Show Streaming Position (Day)</h3><p>Projection, switching and monitoring on one desk facing the lawn.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-11.jpg" data-title="Outdoor Talent Show Control Position (Night)" data-desc="The same position after dark: screens showing the performer's programme feed with name captions, OBS and tablet switching in sync, the projector sending the picture to the big screen for the whole lawn.">
+            <span class="thumb"><img src="assets/img-11.jpg" alt="Night-time outdoor control desk: screen showing the talent show programme feed and projector" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Outdoor Talent Show Control Position (Night)</h3><p>Name captions and big-screen projection, running smoothly after dark.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="video" data-full="assets/img-13.jpg" data-title="Tablet Programme Monitoring" data-desc="Monitoring the final programme feed on a tablet: the talent show stage picture, event branding and performer name captions all legible on the small screen, run sheet on the desk for instant reference.">
+            <span class="thumb"><img src="assets/img-13.jpg" alt="Tablet screen showing the talent show programme feed with name captions, run sheet beside it" /></span>
+            <figcaption><span class="cat">Video Switching</span><h3>Tablet Programme Monitoring</h3><p>Portable monitoring of the final output — captions checked on the spot.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="gala" data-full="assets/img-10.jpg" data-title="Talent Show Programme Feed" data-desc="The talent show final programme feed: the performer in front of the themed backdrop, act and performer name captioned at lower left, event logo top right — the full broadcast graphics package in place.">
+            <span class="thumb"><img src="assets/img-10.jpg" alt="Programme feed of a performer in front of the talent show backdrop, with name caption" /></span>
+            <figcaption><span class="cat">Galas & Banquets</span><h3>Talent Show Programme Feed</h3><p>Themed backdrop plus name captions — complete broadcast graphics.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="audio" data-full="assets/img-01.jpg" data-title="Outdoor Lawn Event Control Position" data-desc="A daytime family event on the lawn: Allen & Heath SQ-5 mixer, Pioneer DJ controller, wireless mic receivers and the streaming laptop on one desk, participants on the lawn behind — running as normal on outdoor power and shade.">
+            <span class="thumb"><img src="assets/img-01.jpg" alt="Lawn event control desk: SQ-5 mixer, DJ controller and laptop, participants behind" /></span>
+            <figcaption><span class="cat">Audio Systems</span><h3>Outdoor Lawn Event Control Position</h3><p>Mixing, DJ and streaming on one desk — full support for the outdoor family day.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="audio" data-full="assets/img-23.jpg" data-title="Lawn Mixer & Receiver Antennas" data-desc="Wide view of the lawn control position: SQ-5 mixer on its case, recording/mixing interface and run sheet beside it, two sets of wireless antennas raised above, facing the lawn audience and stage.">
+            <span class="thumb"><img src="assets/img-23.jpg" alt="SQ-5 mixer, antennas and run sheet on the lawn, audience and clubhouse in the distance" /></span>
+            <figcaption><span class="cat">Audio Systems</span><h3>Lawn Mixer & Receiver Antennas</h3><p>Antennas raised for solid reception, cues followed from the run sheet.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="audio" data-full="assets/img-24.jpg" data-title="Outdoor Event Master Position: Mix & Stream" data-desc="From the desk towards the stage: SQ-5 mixer on the left, OBS streaming laptop and network switch on the right, run sheet in the middle, performers on the distant stage — sound, picture and network converging on one desk.">
+            <span class="thumb"><img src="assets/img-24.jpg" alt="Outdoor control desk facing the stage: mixer, streaming laptop, network switch and run sheet" /></span>
+            <figcaption><span class="cat">Audio Systems</span><h3>Outdoor Event Master Position: Mix & Stream</h3><p>Mix, stream and network on one desk, line of sight to the stage.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-12.jpg" data-title="Outdoor Desk Wiring & Network Integration" data-desc="Behind the control desk: power and signal cabling for the mixer, stage light, network switch and laptops managed centrally, distribution boards and cable labels kept clear — safe and tidy even outdoors.">
+            <span class="thumb"><img src="assets/img-12.jpg" alt="Behind the outdoor control desk: network switch, cabling and power centrally managed" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Outdoor Desk Wiring & Network Integration</h3><p>Power, signal and network centrally managed — safe and tidy.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-14.jpg" data-title="Ballroom Large Display: Multi-View Stream" data-desc="The ballroom mobile large display showing the event stream in a four-way multi-view: live picture, event logo, clock and QR code side by side, so guests anywhere in the room can follow the event.">
+            <span class="thumb"><img src="assets/img-14.jpg" alt="Ballroom large display in four-way view showing stream, logo and QR code" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Ballroom Large Display: Multi-View Stream</h3><p>Four-way multi-view output, every guest in the room kept in sync.</p></figcaption>
+          </button>
+
+          <button class="card" type="button" data-cat="venue" data-full="assets/img-15.jpg" data-title="Large Display: Full-Screen Stream" data-desc="The same display switched to full-screen mode: the outdoor venue live feed fills the screen, event logo and clock kept in the corners, picture ratio and brightness still clear under ballroom lighting.">
+            <span class="thumb"><img src="assets/img-15.jpg" alt="Large display showing the outdoor venue live feed full-screen" /></span>
+            <figcaption><span class="cat">Venue Systems</span><h3>Large Display: Full-Screen Stream</h3><p>Flexible switching between multi-view and full-screen, picture stays clear.</p></figcaption>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= MORE VIDEOS ================= -->
+    <section id="videos">
+      <div class="wrap">
+        <div class="sec-head"><span class="mono">More Videos</span><h2>More Videos: Outdoor Christmas Event</h2></div>
+        <p class="sec-sub">On-the-ground records of the club's outdoor Christmas event: the giant Christmas tree and outdoor stage lit up after dark, stage lighting with haze and bubble effects setting the festive mood. Both clips play right here.</p>
+        <article class="case">
+          <div class="case-videos more-videos">
+            <div class="vid">
+              <video controls preload="none" poster="assets/asset-48.jpg" src="assets/video-01.mp4" aria-label="Video: outdoor Christmas tree and stage with lighting and haze effects"></video>
+              <h4>Video 3 — Outdoor Christmas Stage, Wide View <span class="mono">0:55</span></h4>
+              <p>A full view of the tree lights, stage lighting and haze — the final walkthrough before the event started.</p>
+            </div>
+            <div class="vid">
+              <video class="portrait" controls preload="none" poster="assets/asset-50.jpg" src="assets/video-02.mp4" aria-label="Video: children playing among bubbles and lighting effects at the Christmas event"></video>
+              <h4>Video 4 — At the Christmas Event: Bubbles & Light <span class="mono">0:33</span></h4>
+              <p>Shot in portrait: bubbles and haze beside the Christmas tree, children playing in the lights — pure festive atmosphere.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section id="skills">
+      <div class="wrap">
+        <div class="sec-head"><span class="mono">Capabilities</span><h2>Technical Skills</h2></div>
+        <p class="sec-sub">Every skill below maps directly to the work shown in the photos above.</p>
+        <div class="skills">
+          <div class="skill">
+            <h3>Video Switching & Playback</h3><p class="en">OBS · Zoom · YouTube Live</p>
+            <p>Multi-source switching software operation; main, side and preview outputs; preview-to-programme workflow management for event key visuals, photo slideshows and live feeds.</p>
+            <ul><li>OBS live production: two cameras, graphics and captions, YouTube streaming</li><li>Zoom hybrid events: in-room and remote participants connected seamlessly</li><li>Wireless camera positions and multi-screen monitoring</li><li>Pre-show checks of patterns, aspect ratio and colour</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Audio & Wireless Microphone Systems</h3><p class="en">Allen &amp; Heath · Shure · QSC</p>
+            <p>Live mixing on digital consoles with tablet control of zone levels; wireless mic antenna placement and reception checks, so speeches and performances never drop out.</p>
+            <ul><li>Allen &amp; Heath SQ series mixers</li><li>Shure wireless systems and directional antennas</li><li>QSC / MIPRO portable PA</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Venue Systems & Rack Maintenance</h3><p class="en">Zone Control · Matrix · Networking</p>
+            <p>Day-to-day operation and maintenance of the ballroom's fixed installation: amplifiers, matrix, network and control gear in the racks, Zone Control panel configuration and fault-finding.</p>
+            <ul><li>AV rack cabling, labelling and dressing</li><li>BGM zoning and input panel management</li><li>IT infrastructure background — faster network troubleshooting</li></ul>
+          </div>
+          <div class="skill">
+            <h3>Entertainment Systems Deployment</h3><p class="en">Karaoke · Restaurants · Yachts</p>
+            <p>Fast karaoke deployment across very different settings — restaurant big screens, club function rooms and yacht decks — with the song host, tablet remote and portable PA set up as one integrated system.</p>
+            <ul><li>Dual-screen song selection with tablet remote control</li><li>Adapting to tight spaces and outdoor / marine environments</li><li>Full pre-event testing and on-site support</li></ul>
+          </div>
+        </div>
+
+        <div class="equip">
+          <h3>Systems & Equipment Seen in the Photos</h3>
+          <div class="tags">
+            <span class="tag">Allen &amp; Heath SQ / SQ-5 mixers</span><span class="tag">Shure wireless antennas</span><span class="tag">QSC loudspeakers</span><span class="tag">MIPRO portable PA</span><span class="tag">Extron venue control panels</span><span class="tag">Video switching software (multi-view preview / programme)</span><span class="tag">OBS streaming / YouTube Live</span><span class="tag">Zoom hybrid meetings</span><span class="tag">Wireless video transmission</span><span class="tag">Lighting console</span><span class="tag">Karaoke song systems</span>
+          </div>
+        </div>
+
+        <div class="cert">
+          <div class="score">96.46%</div>
+          <div>
+            <h3>Audinate Dante Certification Level 1(3rd Edition)</h3>
+            <p>Completed in November 2026 with an overall score of 96.46%. Covers digital audio, digital video, networking fundamentals and the Dante platform — the industry standard for audio-over-IP in today's event venues, directly matching the day-to-day work on ballroom racks and zone systems.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <p class="fname">Steven Ng — Event Production &amp; AV</p>
+        <p>Hong Kong · Ballroom / club-venue event production and AV<br />All photos and videos on this page are records of my own work, taken at events in the venue where I work. For more records or to arrange an interview, please get in touch through the job application channel.</p>
+        <p class="mono" style="font-size:.75rem">PORTFOLIO · 42 PHOTOS + 4 VIDEOS · ENGLISH</p>
+      </div>
+    </footer>
+
+    <!-- ================= LIGHTBOX ================= -->
+    <div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged photo view">
+      <div class="lb-bar">
+        <span class="mono" id="lbCount">1 / 42</span>
+        <button class="lbtn" type="button" id="lbClose" aria-label="Close">✕</button>
+      </div>
+      <div class="lb-stage"><img id="lbImg" src="assets/img-39.jpg" alt="" /></div>
+      <button class="lbtn lb-nav lb-prev" type="button" id="lbPrev" aria-label="Previous photo">‹</button>
+      <button class="lbtn lb-nav lb-next" type="button" id="lbNext" aria-label="Next photo">›</button>
+      <div class="lb-cap"><h3 id="lbTitle"></h3><p id="lbDesc"></p></div>
+    </div>
+
+    <script>
+      (function(){
+        var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+        var fbtns = Array.prototype.slice.call(document.querySelectorAll('.fbtn'));
+        var lb = document.getElementById('lightbox');
+        var lbImg = document.getElementById('lbImg');
+        var lbTitle = document.getElementById('lbTitle');
+        var lbDesc = document.getElementById('lbDesc');
+        var lbCount = document.getElementById('lbCount');
+        var current = 0;
+
+        function visibleCards(){ return cards.filter(function(c){ return !c.hidden; }); }
+
+        fbtns.forEach(function(btn){
+          btn.addEventListener('click', function(){
+            fbtns.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+            btn.setAttribute('aria-pressed','true');
+            var f = btn.getAttribute('data-filter');
+            cards.forEach(function(c){
+              c.hidden = !(f === 'all' || c.getAttribute('data-cat') === f);
+            });
+          });
+        });
+
+        function show(idx){
+          var vis = visibleCards();
+          if(!vis.length) return;
+          current = ((idx % vis.length) + vis.length) % vis.length;
+          var c = vis[current];
+          var img = c.querySelector('img');
+          lbImg.src = c.getAttribute('data-full');
+          lbImg.alt = img ? img.alt : '';
+          lbTitle.textContent = c.getAttribute('data-title');
+          lbDesc.textContent = c.getAttribute('data-desc');
+          lbCount.textContent = (current + 1) + ' / ' + vis.length;
+        }
+        function openLb(card){
+          var vis = visibleCards();
+          show(vis.indexOf(card));
+          lb.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          document.getElementById('lbClose').focus();
+        }
+        function closeLb(){
+          lb.classList.remove('open');
+          document.body.style.overflow = '';
+        }
+        cards.forEach(function(c){ c.addEventListener('click', function(){ openLb(c); }); });
+        document.getElementById('lbClose').addEventListener('click', closeLb);
+        document.getElementById('lbPrev').addEventListener('click', function(){ show(current - 1); });
+        document.getElementById('lbNext').addEventListener('click', function(){ show(current + 1); });
+        lb.addEventListener('click', function(e){ if(e.target === lb) closeLb(); });
+        document.addEventListener('keydown', function(e){
+          if(!lb.classList.contains('open')) return;
+          if(e.key === 'Escape') closeLb();
+          if(e.key === 'ArrowLeft') show(current - 1);
+          if(e.key === 'ArrowRight') show(current + 1);
+        });
+        var tx = null;
+        lb.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; }, {passive:true});
+        lb.addEventListener('touchend', function(e){
+          if(tx === null) return;
+          var dx = e.changedTouches[0].clientX - tx;
+          if(Math.abs(dx) > 48){ show(current + (dx < 0 ? 1 : -1)); }
+          tx = null;
+        }, {passive:true});
+      })();
+    </script>
+  </body>
+</html>
